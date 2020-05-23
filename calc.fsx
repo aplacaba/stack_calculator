@@ -16,13 +16,28 @@ let pop (StackContents contents)=
     | [] ->
         failwith "Stack underflow"
 
+let ADD stack =
+    let x,s = pop stack
+    let y,s2 = pop s
+    let result = x + y
+    push result s2
+
+
+let MUL stack =
+    let x,s = pop stack
+    let y,s2 = pop s
+    let result = x * y
+    push result s2
+    
     
 let EMPTY = StackContents []
+let ONE = push 1.0
+let TWO = push 2.0
+let THREE = push 3.0
+let FOUR = push 4.0
+let FIVE = push 5.0
 
-let ONE = push 1.0 
-let TWO = push 2.0 
-let initialStack = EMPTY |> ONE |> TWO
-let popped1, poppedStack = pop initialStack
-let popped2, poppedStack2 = pop poppedStack
 
-let _ = pop EMPTY
+let add1and2 = EMPTY |> ONE |> TWO |> ADD
+let add2and3 = EMPTY |> TWO |> THREE |> ADD
+let mult2and3 = EMPTY |> TWO |> THREE |> MUL
