@@ -40,7 +40,18 @@ let SHOW stack =
     printfn "The answer is %f" x
     stack
 
+let DUP stack =
+    let x,_ = pop stack
+    push x stack
+
+let SWAP stack =
+    let x,s = pop stack
+    let y,s' = pop s
+    push y (push x s')
+
 let EMPTY = StackContents []
+let START = EMPTY
+
 let ONE = push 1.0
 let TWO = push 2.0
 let THREE = push 3.0
